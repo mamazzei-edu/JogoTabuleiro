@@ -32,7 +32,7 @@ public class JogoDaVelha {
 
     }
 
-    public boolean eVencedor(){
+    public int temVencedor(){
         int somaDiagonalD=0;
         for (int linha = 0; linha < dimensao;linha++) {
             int soma_linha = 0;
@@ -43,15 +43,15 @@ public class JogoDaVelha {
                     somaDiagonalD = somaDiagonalD + tabuleiro[linha][coluna];
                 }
                 if(marca!=0){
-                    return true;
+                    return marca;
                 }
             }
         }
 
         if(somaDiagonalD == X*dimensao) {
-            return true;
+            return X;
         } else if (somaDiagonalD == O*dimensao){
-            return true;
+            return O;
         }
 
         int somaDiagonalE = 0;
@@ -64,46 +64,34 @@ public class JogoDaVelha {
                     somaDiagonalE = somaDiagonalE + tabuleiro[linha][coluna];
                 }
                 if(marca!=0){
-                    return true;
+                    return marca;
                 }
             }
         }
 
         if(somaDiagonalE == X*dimensao) {
-            return true;
+            return X;
         } else if (somaDiagonalE == O*dimensao){
-            return true;
+            return O;
         }
-
-
-        return false;
+        return 0;
     }
     
-    public int vencedor() {
-        if (eVencedor(X)){
-            return X;
-        }
-        else if (eVencedor(O)){
-            return O;
-        } else {
-            return 0;
-        }
-    }
 
     public String toString() {
         String s = "";
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < dimensao; i++) {
+            for (int j = 0; j < dimensao; j++) {
                 switch (tabuleiro[i][j]) {
                     case X: s = s + "X"; break;
                     case O: s = s + "O"; break;
-                    case VAZIO: s = s + "0";break;
+                    case VAZIO: s = s + " ";break;
                 }
-                if (j<2) {
+                if (j<dimensao-1) {
                     s = s + "|";
                 }
             }
-            if (i<2) {
+            if (i<dimensao-1) {
                 s = s + "\n_____\n"; 
             }
         }
