@@ -29,7 +29,6 @@ public class JogoDaVelha {
         }
         tabuleiro[i][j]=jogador;
         jogador = -jogador;
-
     }
 
     public int temVencedor(){
